@@ -3,13 +3,13 @@ import chair from '../../../assets/images/chair.png';
 
 const Banner = () => {
     return (
-        <div class="hero min-h-screen">
+        <div class="hero min-h-screen px-5 bg-center bg-no-repeat bg-cover w-auto h-auto bg-[url('/src/assets/images/bg.png')]">
             <div class="hero-content flex-col lg:flex-row-reverse">
                 <img src={chair} class="max-w-lg rounded-lg shadow-2xl mb-4" />
                 <div>
                     <h1 class="text-5xl font-bold mt-5">Your New Smile Starts Here</h1>
                     <p class="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-                    <button class="btn btn-#19D3AE">Get Started</button>
+                    <button class="btn bg-gradient-to-r from-secondary to-primary text-white font-bold border-none">Get Started</button>
                 </div>
             </div>
         </div>
