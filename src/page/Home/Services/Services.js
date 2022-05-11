@@ -10,19 +10,19 @@ const Services = () => {
             _id: 1,
             name: 'Fluoride Treatment',
             description: '',
-            img: 'fluoride'
+            img: fluoride
         },
         {
             _id: 2,
             name: 'Cavity Filling',
             description: '',
-            img: 'cavity'
+            img: cavity
         },
         {
             _id: 1,
             name: 'Teeth Whitening',
             description: '',
-            img: 'whitening'
+            img: whitening
         },
     ]
     return (
@@ -31,7 +31,7 @@ const Services = () => {
                 <h3 className='text-secondary mb-2 font-semibold text-2xl'>OUR SERVICES</h3>
                 <h2 className='text-4xl'>Services We Provide</h2>
             </div>
-            <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+            <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                 {
                     services.map(service =>
                         <Service
