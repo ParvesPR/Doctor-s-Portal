@@ -14,9 +14,9 @@ const ContactUs = () => {
                     <h3 className='text-white text-2xl lg:text-3xl'>Stay connected with us</h3>
                 </div>
                 <div className='mb-5'>
-                    <input type="text" placeholder="Email Address" class="mb-5 input input-bordered input-md w-full" />
-                    <input type="text" placeholder="Subject" class="mb-5 input input-bordered input-md w-full" />
-                    <textarea class="textarea w-full" placeholder="Your Message"></textarea>
+                    <input type="text" placeholder="Email Address" className="mb-5 input input-bordered input-md w-full" />
+                    <input type="text" placeholder="Subject" className="mb-5 input input-bordered input-md w-full" />
+                    <textarea className="textarea w-full" placeholder="Your Message"></textarea>
                 </div>
                 <Button>Get Started</Button>
 
