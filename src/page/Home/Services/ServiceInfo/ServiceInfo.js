@@ -4,7 +4,7 @@ import Button from '../../../Shared/Button/Button';
 
 const ServiceInfo = () => {
     return (
-        <div class="hero min-h-screen w-3/4 mx-auto my-10">
+        <div class="hero min-h-screen w-3/4 mx-auto mt-10 mb-40">
             <div class="hero-content flex-col lg:flex-row">
                 <img src={image} class="sm:my-5 max-w-sm rounded-lg shadow-2xl" alt='' />
                 <div className='ml-10'>
