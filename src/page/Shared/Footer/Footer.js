@@ -6,8 +6,8 @@ const Footer = () => {
         <footer style={{ background: `url(${footer})`,
     backgroundSize:'cover',
 backgroundRepeat:'no-repeat' }}
-            className="p-10 my-10">
-            <div className='footer'>
+            className="p-10 mt-10 mx-auto">
+            <div className='footer justify-between'>
                 <div>
                     <span className="footer-title">Services</span>
                     <button className="link link-hover">Emergency Checkup</button>
