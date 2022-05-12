@@ -5,7 +5,7 @@ const Header = () => {
 
     const menuItems=<>
     <li><Link to="/">Home</Link></li>
-    <li><Link to="/appoinment">Appoinment</Link></li>
+    <li><Link to="/appointment">Appoinment</Link></li>
     <li><Link to="/reviews">Reviews</Link></li>
     <li><Link to="/contact">Contact</Link></li>
     <li><Link to="/about">About</Link></li>
