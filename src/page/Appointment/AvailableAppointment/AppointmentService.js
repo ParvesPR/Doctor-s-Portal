@@ -13,7 +13,7 @@ const AppointmentService = ({ service, setTreatment }) => {
                 <div className="card-actions mx-auto">
                     <label htmlFor="booking-modal"
                         onClick={() => setTreatment(service)}
-                        className="btn bg-gradient-to-r from-secondary to-primary text-white font-bold border-none" disabled={slots?.length === 0}>Booking Appointment</label>
+                        className="btn btn-sm bg-gradient-to-r from-secondary to-primary text-white font-bold border-none" disabled={slots?.length === 0}>Booking Appointment</label>
                 </div>
             </div>
         </div>
