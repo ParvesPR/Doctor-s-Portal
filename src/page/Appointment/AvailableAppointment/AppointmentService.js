@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AppointmentService = ({ service }) => {
+const AppointmentService = ({ service, setTreatment }) => {
     const { name, slots } = service;
     return (
         <div className="card lg:max-w-lg shadow-xl text-center">

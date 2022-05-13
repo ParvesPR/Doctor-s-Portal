@@ -4,6 +4,7 @@ import AppointmentService from './AppointmentService';
 
 const AvailableAppointment = ({ date }) => {
     const [services, setServices] = useState([]);
+    const [treatment, setTreatment] = useState(null)
 
     useEffect(() => {
         fetch('services.json')
@@ -18,6 +19,7 @@ const AvailableAppointment = ({ date }) => {
                     services.map(service => <AppointmentService
                         key={service._id}
                         service={service}
+                        setTreatment={setTreatment}
                     ></AppointmentService>)
                 }
             </div>
