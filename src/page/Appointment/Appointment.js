@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Footer from '../Shared/Footer/Footer';
 import AppointmentBanner from './AppointmentBanner/AppointmentBanner';
-import AppointmentService from './AvailableAppointment/AppointmentService';
 import AvailableAppointment from './AvailableAppointment/AvailableAppointment';
 
 
@@ -11,7 +10,6 @@ const Appointment = () => {
         <div className='px-12'>
             <AppointmentBanner date={date} setDate={setDate}></AppointmentBanner>
             <AvailableAppointment date={date}></AvailableAppointment>
-            <AppointmentService></AppointmentService>
             <Footer></Footer>
         </div>
     );
