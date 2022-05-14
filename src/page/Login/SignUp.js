@@ -1,24 +1,26 @@
 import React from 'react';
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading/Loading';
 
-const Login = () => {
+const SignUp = () => {
+
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const [
-        signInWithEmailAndPassword,
+        createUserWithEmailAndPassword,
         user,
         loading,
         error,
-    ] = useSignInWithEmailAndPassword(auth);
-    let signInError;
+    ] = useCreateUserWithEmailAndPassword(auth);
+
+    let signUpError;
 
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = data => {
         console.log(data);
-        signInWithEmailAndPassword(data.email, data.password)
+        createUserWithEmailAndPassword(data.email, data.password)
     };
     if (gUser || user) {
         console.log(gUser || user)
@@ -29,17 +31,39 @@ const Login = () => {
     };
 
     if (error || gError) {
-        signInError = <p className='text-red-500 font-semibold text-sm mb-3'>{error?.message || gError.message}</p>
+        signUpError = <p className='text-red-500 font-semibold text-sm mb-3'>{error?.message || gError.message}</p>
     }
 
     return (
         <div className='flex h-screen justify-center items-center'>
             <div className="card w-96 bg-base-100 shadow-xl">
                 <div className="card-body">
-                    <h2 className="text-center font-bold text-2xl">Login</h2>
+                    <h2 className="text-center font-bold text-2xl">Sign Up</h2>
 
-                    {/* EMAIL FIELD */}
                     <form onSubmit={handleSubmit(onSubmit)}>
+                        {/* NAME FIELD */}
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Name</span>
+                            </label>
+                            <input
+                                type="name"
+                                placeholder="Name"
+                                className="input input-bordered w-full max-w-xs"
+                                {...register("name", {
+                                    required: {
+                                        value: true,
+                                        message: 'Name is required'
+                                    },
+                                })}
+                            />
+                            <label className="label">
+                                {errors.name?.type === 'required' && <span className="label-text-alt font-semibold text-red-500">{errors.name.message}</span>}
+                                {errors.name?.type === 'pattern' && <span className="label-text-alt font-semibold text-red-500">{errors.name.message}</span>}
+                            </label>
+                        </div>
+
+                        {/* EMAIL FIELD */}
                         <div className="form-control w-full max-w-xs">
                             <label className="label">
                                 <span className="label-text">Email</span>
@@ -62,7 +86,6 @@ const Login = () => {
                             <label className="label">
                                 {errors.email?.type === 'required' && <span className="label-text-alt font-semibold text-red-500">{errors.email.message}</span>}
                                 {errors.email?.type === 'pattern' && <span className="label-text-alt font-semibold text-red-500">{errors.email.message}</span>}
-
                             </label>
                         </div>
 
@@ -89,15 +112,15 @@ const Login = () => {
                             <label className="label">
                                 {errors.password?.type === 'required' && <span className="label-text-alt font-semibold text-red-500">{errors.password.message}</span>}
                                 {errors.password?.type === 'minLength' && <span className="label-text-alt font-semibold text-red-500">{errors.password.message}</span>}
-
                             </label>
                         </div>
-                        {signInError}
+
+                        {signUpError}
                         <input
                             className='btn w-full max-w-xs'
-                            value="Login"
+                            value="Sign up"
                             type="submit" />
-                        <p className='text-md mt-3'>New to Doctor's Portal? <Link className='text-primary' to="/signup">Create an Account</Link></p>
+                        <p className='text-md mt-3'>Already have an Account? <Link className='text-primary' to="/login">Please Login</Link></p>
                     </form>
 
                     <div className="divider">OR</div>
@@ -110,4 +133,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default SignUp;
