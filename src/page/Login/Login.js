@@ -16,10 +16,6 @@ const Login = () => {
     let signInError;
 
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const onSubmit = data => {
-        console.log(data);
-        signInWithEmailAndPassword(data.email, data.password)
-    };
     if (gUser || user) {
         console.log(gUser || user)
     };
@@ -30,8 +26,13 @@ const Login = () => {
 
     if (error || gError) {
         signInError = <p className='text-red-500 font-semibold text-sm mb-3'>{error?.message || gError.message}</p>
-    }
+    };
 
+    const onSubmit = data => {
+        console.log(data);
+        signInWithEmailAndPassword(data.email, data.password)
+    };
+    
     return (
         <div className='flex h-screen justify-center items-center'>
             <div className="card w-96 bg-base-100 shadow-xl">
