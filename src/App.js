@@ -4,6 +4,7 @@ import About from './page/About/About';
 import Appointment from './page/Appointment/Appointment';
 import Home from './page/Home/Home';
 import Login from './page/Login/Login';
+import RequireAuth from './page/Login/RequireAuth';
 import SignUp from './page/Login/SignUp';
 import Header from './page/Shared/Header/Header';
 
@@ -14,7 +15,11 @@ function App() {
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/home' element={<Home></Home>}></Route>
-        <Route path='/appointment' element={<Appointment></Appointment>}></Route>
+        <Route path='/appointment' element={
+          <RequireAuth>
+            <Appointment></Appointment>
+          </RequireAuth>
+        }></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
         <Route path='/about' element={<About></About>}></Route>
