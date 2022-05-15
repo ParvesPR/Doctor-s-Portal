@@ -11,7 +11,16 @@ const BookingModal = ({ date, treatment, setTreatment }) => {
     const handleSubmit = event => {
         event.preventDefault();
         const slot = event.target.slot.value;
-        console.log(_id, name, slot);
+        const dateFormat = format(date, "pp");
+        const bookingData = {
+            treatmentId: _id,
+            treatment: name,
+            date: dateFormat,
+            slot,
+            patient: user.email,
+            patientName: user.displayName,
+            phone: event.target.phone.value,
+        }
         setTreatment(null)
     }
     return (
@@ -29,7 +38,7 @@ const BookingModal = ({ date, treatment, setTreatment }) => {
                             }
                         </select>
                         <input type="text" name="name" value={user?.displayName || ''} className="input input-bordered w-full max-w-xs" required readOnly />
-                        <input type="email" name="email" value={user.email || ''} className="input input-bordered w-full max-w-xs" required readOnly/>
+                        <input type="email" name="email" value={user.email || ''} className="input input-bordered w-full max-w-xs" required readOnly />
                         <input type="number" name="phone" placeholder="Phone Number" className="input input-bordered w-full max-w-xs" required />
                         <input type="submit" value="Submit" className="btn bg-gradient-to-r from-secondary to-primary text-white border-none w-full max-w-xs" />
                     </form>

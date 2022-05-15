@@ -38,7 +38,6 @@ const SignUp = () => {
         createUserWithEmailAndPassword(data.email, data.password);
         updateProfile({ displayName: data.name });
         navigate('/home');
-        console.log('done')
     };
     return (
         <div className='flex h-screen justify-center items-center'>
