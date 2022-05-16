@@ -33,10 +33,10 @@ const SignUp = () => {
         signUpError = <p className='text-red-500 font-semibold text-sm mb-3'>{error?.message || gError.message || updateError}</p>
     };
 
-    const onSubmit = data => {
+    const onSubmit = async data => {
+        await createUserWithEmailAndPassword(data.email, data.password);
+        await updateProfile({ displayName: data.name });
         console.log(data);
-        createUserWithEmailAndPassword(data.email, data.password);
-        updateProfile({ displayName: data.name });
         navigate('/home');
     };
     return (

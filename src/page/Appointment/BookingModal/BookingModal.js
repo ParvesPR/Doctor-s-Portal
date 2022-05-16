@@ -13,7 +13,7 @@ const BookingModal = ({ date, treatment, setTreatment }) => {
         event.preventDefault();
         const slot = event.target.slot.value;
         const dateFormat = format(date, 'PP');
-        const booking = {
+        const bookings = {
             treatmentId: _id,
             treatment: name,
             date: dateFormat,
@@ -28,7 +28,7 @@ const BookingModal = ({ date, treatment, setTreatment }) => {
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(booking)
+            body: JSON.stringify(bookings)
         })
             .then(res => res.json())
             .then(data => {
@@ -37,7 +37,7 @@ const BookingModal = ({ date, treatment, setTreatment }) => {
                     toast.success(`Appointment is set, ${dateFormat} at ${slot}`)
                 }
                 else {
-                    toast.error(`Already have an Appointment on, ${data.booking?.date} at ${data.booking?.slot}`)
+                    toast.error(`Already have an Appointment on, ${data.bookings?.date} at ${data.booking?.slot}`)
                 }
                 setTreatment(null)
             });

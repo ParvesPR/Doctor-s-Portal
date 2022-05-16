@@ -5,10 +5,11 @@ import AppointmentService from './AppointmentService';
 
 const AvailableAppointment = ({ date }) => {
     const [services, setServices] = useState([]);
-    const [treatment, setTreatment] = useState(null)
+    const [treatment, setTreatment] = useState(null);
+    const dateFormat = format(date, 'PP')
 
     useEffect(() => {
-        fetch('http://localhost:5000/appointment')
+        fetch(`http://localhost:5000/available?date=${dateFormat}`)
             .then(res => res.json())
             .then(data => setServices(data))
     }, [])
