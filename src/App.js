@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import About from './page/About/About';
 import Appointment from './page/Appointment/Appointment';
+import DashBoard from './page/DashBoard/DashBoard';
 import Home from './page/Home/Home';
 import Login from './page/Login/Login';
 import RequireAuth from './page/Login/RequireAuth';
@@ -19,6 +20,11 @@ function App() {
         <Route path='/appointment' element={
           <RequireAuth>
             <Appointment></Appointment>
+          </RequireAuth>
+        }></Route>
+        <Route path='dashboard' element={
+          <RequireAuth>
+            <DashBoard></DashBoard>
           </RequireAuth>
         }></Route>
         <Route path='/login' element={<Login></Login>}></Route>
