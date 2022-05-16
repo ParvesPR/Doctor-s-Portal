@@ -4,6 +4,8 @@ import './App.css';
 import About from './page/About/About';
 import Appointment from './page/Appointment/Appointment';
 import DashBoard from './page/DashBoard/DashBoard';
+import MyAppointments from './page/DashBoard/MyAppointments';
+import MyReview from './page/DashBoard/MyReview';
 import Home from './page/Home/Home';
 import Login from './page/Login/Login';
 import RequireAuth from './page/Login/RequireAuth';
@@ -22,11 +24,14 @@ function App() {
             <Appointment></Appointment>
           </RequireAuth>
         }></Route>
-        <Route path='dashboard' element={
+        <Route path='/dashboard' element={
           <RequireAuth>
             <DashBoard></DashBoard>
           </RequireAuth>
-        }></Route>
+        }>
+          <Route index element={<MyAppointments></MyAppointments>}></Route>
+          <Route path='review' element={<MyReview></MyReview>}></Route>
+        </Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
         <Route path='/about' element={<About></About>}></Route>
