@@ -9,6 +9,7 @@ import MyAppointments from './page/DashBoard/MyAppointments';
 import MyReview from './page/DashBoard/MyReview';
 import Home from './page/Home/Home';
 import Login from './page/Login/Login';
+import RequireAdmin from './page/Login/RequireAdmin';
 import RequireAuth from './page/Login/RequireAuth';
 import SignUp from './page/Login/SignUp';
 import Header from './page/Shared/Header/Header';
@@ -32,7 +33,11 @@ function App() {
         }>
           <Route index element={<MyAppointments></MyAppointments>}></Route>
           <Route path='review' element={<MyReview></MyReview>}></Route>
-          <Route path='allusers' element={<AllUsers></AllUsers>}></Route>
+          <Route path='allusers' element={
+            <RequireAdmin>
+              <AllUsers></AllUsers>
+            </RequireAdmin>
+          }></Route>
         </Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
