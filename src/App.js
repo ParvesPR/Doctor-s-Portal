@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import About from './page/About/About';
 import Appointment from './page/Appointment/Appointment';
+import AllUsers from './page/DashBoard/AllUsers';
 import DashBoard from './page/DashBoard/DashBoard';
 import MyAppointments from './page/DashBoard/MyAppointments';
 import MyReview from './page/DashBoard/MyReview';
@@ -31,6 +32,7 @@ function App() {
         }>
           <Route index element={<MyAppointments></MyAppointments>}></Route>
           <Route path='review' element={<MyReview></MyReview>}></Route>
+          <Route path='allusers' element={<AllUsers></AllUsers>}></Route>
         </Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
