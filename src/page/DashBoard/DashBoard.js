@@ -8,7 +8,7 @@ const DashBoard = () => {
     const [user] = useAuthState(auth);
     const [admin] = useAdmin(user)
     return (
-        <div className="drawer drawer-mobile">
+        <div className="drawer drawer-mobile bg-gray-100">
             <input id="dash-drawer" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content">
                 <h2 className='py-5 text-4xl font-semibold text-center text-purple-600'>Welcome To Your Dashboard</h2>
@@ -20,7 +20,11 @@ const DashBoard = () => {
                     {/* Sidebar content here */}
                     <li><Link to="/dashboard">MY Appointments</Link></li>
                     <li><Link to="/dashboard/review">My Reviews</Link></li>
-                    <li>{admin && <Link to="/dashboard/allusers">All Users</Link>}</li>
+                    <li>{admin && <>
+                        <Link to="/dashboard/allusers">All Users</Link>
+                        <Link to="/dashboard/addDoctor">Add Doctor</Link>
+                    </>
+                    }</li>
                 </ul>
 
             </div>
