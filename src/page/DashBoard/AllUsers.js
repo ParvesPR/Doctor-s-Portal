@@ -15,7 +15,7 @@ const AllUsers = () => {
     }
 
     return (
-        <div>
+        <div className='px-12'>
             <h2 className='text-2xl'>All Users {users.length}</h2>
 
             <div className="overflow-x-auto">

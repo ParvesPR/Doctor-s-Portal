@@ -1,16 +1,46 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { useQuery } from 'react-query';
+import Loading from '../Shared/Loading/Loading';
 
 const AddDoctor = () => {
-
     const { register, formState: { errors }, handleSubmit } = useForm();
+    const imgStorageKey = 'e2d45fddfbfdb6662a3ef75d64ca3f0b';
+
+    const { data: appointments, isLoading } = useQuery(['appointments'], () => fetch(`http://localhost:5000/appointment`)
+        .then(res => res.json()))
 
     const onSubmit = async data => {
         console.log('data', data);
+        const image = data.image[0];
+        const formData = new FormData();
+        formData.append('image', image);
+        const url = `https://api.imgbb.com/1/upload?key=${imgStorageKey}`;
+
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(result => {
+                console.log('imgbb', result)
+
+                if (result.success) {
+                    const img = result.data.url;
+                    const doctor = {
+                        name: data.name,
+                        email: data.email,
+                        specialty: data.specialty,
+                        img: img
+                    }
+                }
+            })
     };
+    if (isLoading) {
+        return <Loading></Loading>
+    }
     return (
-        <div className='px-8 flex justify-center'>
+        <div className='px-8 w-96 mx-auto'>
             <div>
                 <h2 className='text-3xl font-bold my-3'>Add a Doctor</h2>
 
@@ -63,37 +93,41 @@ const AddDoctor = () => {
                         </label>
                     </div>
 
-                    {/* PASSWORD FIELD */}
+                    {/* SPECIALTY FIELD */}
                     <div className="form-control w-full max-w-xs">
                         <label className="label">
-                            <span className="label-text">Password</span>
+                            <span className="label-text">Specialty</span>
+                        </label>
+                        <select {...register("specialty")} className="select input-bordered w-full max-w-xs">
+                            {
+                                appointments.map(appointment => <option
+                                    key={appointment._id}
+                                    value={appointment.name}
+                                >{appointment.name}</option>)
+                            }
+                        </select>
+                    </div>
+
+                    {/* IMAGE UPLOAD FIELD */}
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label">
+                            <span className="label-text">Image</span>
                         </label>
                         <input
-                            type="password"
-                            placeholder="Password"
+                            type="file"
                             className="input input-bordered w-full max-w-xs"
-                            {...register("password", {
+                            {...register("image", {
                                 required: {
                                     value: true,
-                                    message: 'Password is required'
+                                    message: 'Image is required'
                                 },
-                                minLength: {
-                                    value: 6,
-                                    message: 'Password must be 6 character or more'
-                                }
                             })}
                         />
                         <label className="label">
-                            {errors.password?.type === 'required' && <span className="label-text-alt font-semibold text-red-500">{errors.password.message}</span>}
-                            {errors.password?.type === 'minLength' && <span className="label-text-alt font-semibold text-red-500">{errors.password.message}</span>}
+                            {errors.image?.type === 'required' && <span className="label-text-alt font-semibold text-red-500">{errors.image.message}</span>}
                         </label>
                     </div>
-
-                    <input
-                        className='btn w-full max-w-xs'
-                        value="Sign up"
-                        type="submit" />
-                    <p className='text-md mt-3'>Already have an Account? <Link className='text-primary' to="/login">Please Login</Link></p>
+                    <input className='btn w-full mt-3' value="Sign up" type="submit" />
                 </form>
             </div>
         </div>
