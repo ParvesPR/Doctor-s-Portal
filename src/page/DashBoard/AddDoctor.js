@@ -1,14 +1,19 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { useQuery } from 'react-query';
 import Loading from '../Shared/Loading/Loading';
 
 const AddDoctor = () => {
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const imgStorageKey = 'e2d45fddfbfdb6662a3ef75d64ca3f0b';
 
     const { data: appointments, isLoading } = useQuery(['appointments'], () => fetch(`http://localhost:5000/appointment`)
-        .then(res => res.json()))
+        .then(res => res.json()));
+
+    if (isLoading) {
+        return <Loading></Loading>
+    }
 
     const onSubmit = async data => {
         console.log('data', data);
@@ -33,12 +38,29 @@ const AddDoctor = () => {
                         specialty: data.specialty,
                         img: img
                     }
+                    // send to your database 
+                    fetch('http://localhost:5000/doctor', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json',
+                            authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                        },
+                        body: JSON.stringify(doctor)
+                    })
+                        .then(res => res.json())
+                        .then(inserted => {
+                            if (inserted.insertedId) {
+                                toast.success('Doctor added successfully');
+                                reset();
+                            }
+                            else {
+                                toast.error('Failed to add a doctor')
+                            }
+                        })
                 }
             })
     };
-    if (isLoading) {
-        return <Loading></Loading>
-    }
+
     return (
         <div className='px-8 w-96 mx-auto'>
             <div>
