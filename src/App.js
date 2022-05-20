@@ -15,6 +15,7 @@ import RequireAdmin from './page/Login/RequireAdmin';
 import RequireAuth from './page/Login/RequireAuth';
 import SignUp from './page/Login/SignUp';
 import Header from './page/Shared/Header/Header';
+import Payment from './page/DashBoard/Payment';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           </RequireAuth>
         }>
           <Route index element={<MyAppointments></MyAppointments>}></Route>
+          <Route path='payment/:id' element={<Payment></Payment>}></Route>
           <Route path='review' element={<MyReview></MyReview>}></Route>
           <Route path='allusers' element={
             <RequireAdmin>

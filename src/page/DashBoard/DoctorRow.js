@@ -1,8 +1,7 @@
 import React from 'react';
-import toast from 'react-hot-toast';
 
 const DoctorRow = ({ doctor, refetch, index, setDeleteDoctor }) => {
-    const { img, name, specialty, email } = doctor;
+    const { img, name, specialty } = doctor;
     return (
         <tr>
             <td>{index + 1}</td>
