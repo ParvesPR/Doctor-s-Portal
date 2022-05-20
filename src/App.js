@@ -4,6 +4,7 @@ import './App.css';
 import About from './page/About/About';
 import Appointment from './page/Appointment/Appointment';
 import AddDoctor from './page/DashBoard/AddDoctor';
+import ManageDoctors from './page/DashBoard/ManageDoctors';
 import AllUsers from './page/DashBoard/AllUsers';
 import DashBoard from './page/DashBoard/DashBoard';
 import MyAppointments from './page/DashBoard/MyAppointments';
@@ -42,6 +43,11 @@ function App() {
           <Route path='addDoctor' element={
             <RequireAdmin>
               <AddDoctor></AddDoctor>
+            </RequireAdmin>
+          }></Route>
+          <Route path='manageDoctors' element={
+            <RequireAdmin>
+              <ManageDoctors></ManageDoctors>
             </RequireAdmin>
           }></Route>
         </Route>

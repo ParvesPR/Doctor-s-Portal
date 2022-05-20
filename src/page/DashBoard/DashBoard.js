@@ -23,6 +23,7 @@ const DashBoard = () => {
                     <li>{admin && <>
                         <Link to="/dashboard/allusers">All Users</Link>
                         <Link to="/dashboard/addDoctor">Add Doctor</Link>
+                        <Link to="/dashboard/manageDoctors">Manage Doctors</Link>
                     </>
                     }</li>
                 </ul>
